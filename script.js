@@ -10,11 +10,18 @@ this.token||(this.token=b.data);this.disposed||!this.hosted||this.ready||(d=!0)}
 
 
 ///////////////////////////////////////////////////////////////////////////////
+
 const queryString = window.location.search;
 const parameters = new URLSearchParams(queryString);
 const value = parameters.get('name');
-localStorage.setItem("currentVal1", value);
+console.log(value);
+
+if(value){
+    localStorage.setItem("currentVal1", value);
     getapi();
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
 
 function myFunction() {
@@ -61,8 +68,9 @@ async function getapi() {
 
     document.getElementById("director").innerHTML = Director;
 
+    
     pushData(myObj.Title,myObj.Released,myObj.Director);
-
+    
     // {
     //     var notificationHandler = function(data) {
     //     // Do something with the notifications
@@ -99,6 +107,8 @@ async function getapi() {
     
 }
 
+
+
 function pushData(title,released,director){
 
     {
@@ -126,8 +136,10 @@ function pushData(title,released,director){
     
         var cmdName = lpTag.agentSDK.cmdNames.write; // = "Write ChatLine"
         var data = {text: "Title : "+title+"\nReleased : "+released+"\nDirector : "+director};
+        console.log(data);
     
         lpTag.agentSDK.command(cmdName, data, notifyWhenDone);
+        
     
 
 }
